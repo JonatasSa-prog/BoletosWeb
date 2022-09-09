@@ -1,0 +1,83 @@
+﻿@model Imovel
+@{
+    ViewData["Title"] = "Remover Imovel";
+    IEnumerable<Pessoa> pessoas = (IEnumerable<Pessoa>)ViewBag.DadosPessoa;
+}
+
+@if (TempData["MensageErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensageErro"];
+    </div>
+}
+
+<form asp-controller="Imovel" asp-action="RemoverImovel" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="codImovel">Código Imovel</label>
+            <input type="text" asp-for="codImovel" value="@Model.codImovel" class="form-control" id="CodImovel" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="proprietario">Próprietário</label>
+            <select asp-for="IdProprietario" class="form-control" required disabled="">
+                <option value="0">Selecione</option>
+                @foreach (var pessoa in pessoas)
+                {
+                    @if (pessoa == Model.Proprietario)
+                    {
+                        <option value="@pessoa.Id" selected="selected">@pessoa.Nome</option>
+                    }
+                    else
+                    {
+                        <option value="@pessoa.Id">@pessoa.Nome</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="morador">Morador</label>
+            <select asp-for="IdMorador" class="form-control" required disabled="">
+                <option value="0">Selecione</option>
+                @foreach (var pessoa in pessoas)
+                {
+                    @if (pessoa == Model.Morador)
+                    {
+                        <option value="@pessoa.Id" selected="selected">@pessoa.Nome</option>
+                    }
+                    else
+                    {
+                        <option value="@pessoa.Id">@pessoa.Nome</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="dimensao">Dimensão</label>
+            <input type="number" asp-for="dimensao" value="@Model.dimensao" class="form-control" id="dimensao" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="garegens">Número de Garagens</label>
+            <input type="number" asp-for="numGaragem" value="@Model.numGaragem" class="form-control" id="garegens" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="dimensao">Dimensão</label>
+            <input type="number" asp-for="dimensao" value="@Model.dimensao" class="form-control" id="dimensao" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valor">Valor</label>
+            <input type="number" asp-for="valor" value="@Model.valor" class="form-control" id="valor" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valoreExtra">Valor Extra</label>
+            <input type="number" asp-for="vrExtra" value="@Model.vrExtra" class="form-control" id="valoreExtra" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valorDevido">Valor Devido</label>
+            <input type="number" asp-for="vrDevido" value="@Model.vrDevido" class="form-control" id="valorDevido" required disabled="">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Remover</button>
+    <button type="submit" asp-controller="Imovel" asp-action="Index" class="btn btn-secondary btn-block">Voltar</button>
+</form>

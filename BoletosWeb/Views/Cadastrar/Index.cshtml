@@ -1,0 +1,31 @@
+﻿@model Conta
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Cadastro";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensageErro"];
+    </div>
+}
+
+<form asp-controller="Cadastrar" asp-action="Cadastrar" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName">Nome Completo</label>
+            <input type="text" asp-for="Nome" class="form-control" id="Nome" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="inputEmail4">Email</label>
+            <input type="email" asp-for="Email" class="form-control" id="E-mail" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="inputPassword4">Senha</label>
+            <input type="password" asp-for="Senha" class="form-control" id="Senha" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+</form>

@@ -1,0 +1,67 @@
+﻿@model Imovel
+@{
+    ViewData["Title"] = "Adicionar Imovel";
+    IEnumerable<Pessoa> pessoas = (IEnumerable<Pessoa>)ViewBag.DadosPessoa;
+}
+
+@if (TempData["MensageErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensageErro"];
+    </div>
+}
+
+<form asp-controller="Imovel" asp-action="AdicionarImovel" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="codImovel">Código Imovel</label>
+            <input type="text" asp-for="codImovel" class="form-control" id="CodImovel" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="proprietario">Próprietário</label>
+            <select asp-for="IdProprietario" class="form-control" required>
+                <option value="0">Selecione</option>
+                @foreach (var pessoa in pessoas)
+                {
+                    <option value="@pessoa.Id">@pessoa.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="morador">Morador</label>
+            <select asp-for="IdMorador" class="form-control" required>
+                <option value="0">Selecione</option>
+                @foreach (var pessoa in pessoas)
+                {
+                    <option value="@pessoa.Id">@pessoa.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="dimensao">Dimensão</label>
+            <input type="number" asp-for="dimensao" class="form-control" id="dimensao" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="garegens">Número de Garagens</label>
+            <input type="number" asp-for="numGaragem" class="form-control" id="garegens" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="dimensao">Dimensão</label>
+            <input type="number" asp-for="dimensao" class="form-control" id="dimensao" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valor">Valor</label>
+            <input type="number" asp-for="valor" class="form-control" id="valor" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valoreExtra">Valor Extra</label>
+            <input type="number" asp-for="vrExtra" class="form-control" id="valoreExtra" required>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="valorDevido">Valor Devido</label>
+            <input type="number" asp-for="vrDevido" class="form-control" id="valorDevido" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>   
+</form>

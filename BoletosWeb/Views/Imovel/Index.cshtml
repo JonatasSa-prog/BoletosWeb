@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BoletosWeb.Models.Imovel>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Imoveis";
+}
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Adicionar">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código Imovel
+            </th>
+            <th>
+                Proprietário
+            </th>
+            <th>
+                Morador
+            </th>
+            <th>
+                Dimensão
+            </th>
+            <th>
+               Garagens
+            </th>
+            <th>
+               Valor
+            </th>
+            <th>
+                Valor Extra
+            </th>
+            <th>
+                Valor Devido
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codImovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proprietario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morador.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dimensao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numGaragem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrExtra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrDevido)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <a asp-action="Remover" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
