@@ -4,14 +4,16 @@ using BoletosWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoletosWeb.Migrations
 {
     [DbContext(typeof(BoletosWebContext))]
-    partial class BoletosWebContextModelSnapshot : ModelSnapshot
+    [Migration("20220911134619_13")]
+    partial class _13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace BoletosWeb.Migrations
 
                     b.Property<string>("Complemento")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Conta")
-                        .HasColumnType("int");
 
                     b.Property<int>("IdUF")
                         .HasColumnType("int");

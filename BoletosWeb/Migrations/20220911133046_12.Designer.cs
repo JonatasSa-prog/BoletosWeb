@@ -4,14 +4,16 @@ using BoletosWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoletosWeb.Migrations
 {
     [DbContext(typeof(BoletosWebContext))]
-    partial class BoletosWebContextModelSnapshot : ModelSnapshot
+    [Migration("20220911133046_12")]
+    partial class _12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +66,6 @@ namespace BoletosWeb.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Conta")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdUF")
                         .HasColumnType("int");
 
@@ -76,13 +75,12 @@ namespace BoletosWeb.Migrations
                     b.Property<string>("Pais")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PessoaId")
+                    b.Property<int?>("PessoaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PessoaId")
-                        .IsUnique();
+                    b.HasIndex("PessoaId");
 
                     b.ToTable("Endereco");
                 });
@@ -189,10 +187,8 @@ namespace BoletosWeb.Migrations
             modelBuilder.Entity("BoletosWeb.Models.Endereco", b =>
                 {
                     b.HasOne("BoletosWeb.Models.Pessoa", "Pessoa")
-                        .WithOne("Endereco")
-                        .HasForeignKey("BoletosWeb.Models.Endereco", "PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("PessoaId");
 
                     b.Navigation("Pessoa");
                 });
@@ -223,8 +219,6 @@ namespace BoletosWeb.Migrations
 
             modelBuilder.Entity("BoletosWeb.Models.Pessoa", b =>
                 {
-                    b.Navigation("Endereco");
-
                     b.Navigation("Telefones");
                 });
 #pragma warning restore 612, 618

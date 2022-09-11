@@ -17,7 +17,7 @@ namespace BoletosWeb.Services
         }
         public List<Pessoa> GetPessoas(Conta conta)
         {
-            return _context.Pessoa.Include(p => p.Telefones).Where(p => p.Conta == conta.Id).ToList();
+            return _context.Pessoa.Where(p => p.Conta == conta.Id).Include(p => p.Telefones).Include(p => p.Endereco).ToList();
         }
 
         public Pessoa GetPessoaById(Conta conta, int id)

@@ -10,9 +10,33 @@
         @TempData["MensageErro"];
     </div>
 }
+<style>
+    div#bloco {
+        border: 1px solid ;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        padding: 20px;
+    }
 
+    .form-check-input {
+        margin-left: 0rem !important;
+        margin-right: 10px;
+        position: initial !important;
+    }
+
+    h5 {
+        padding-left: 0px !important;
+        margin-bottom: 20px;
+    }
+
+    .form-row>.col, .form-row>[class*=col-] {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+</style>
 <form asp-controller="Pessoa" asp-action="AdicionarPessoa" method="post">
-    <div class="form-row">
+    <div class="form-row" id="bloco">
+        <h5>Dados Pessoais</h5>
         <div class="form-group col-md-12">
             <label for="codImovel">Nome Completo</label>
             <input type="text" asp-for="Pessoa.Nome" class="form-control" id="CodImovel" required>
@@ -26,9 +50,8 @@
             <input type" asp-for="Pessoa.Email" class="form-control" id="Email" required>
         </div>
         <div class="form-group col-md-12 form-check">
-            <label class="form-check-label">
-                <input asp-for="Pessoa.TipoPessoa" class="form-check-input" id="TipoPessoa" onclick="Mudarestado('divCNPJ')"> Pessoa Física?
-            </label>
+            <label class="form-group form-check-label"></label>
+            <input asp-for="Pessoa.TipoPessoa" class="form-check-input" id="TipoPessoa" onclick="Mudarestado('divCNPJ')"> Pessoa Física?
         </div>
         <div class="form-group col-md-12" id="divCPF">
             <label for="cpf">CPF</label>
@@ -37,6 +60,39 @@
         <div class="form-group col-md-12" id="divCNPJ" style="display:none">
             <label for="cnpj">CNPJ</label>
             <input type="text" asp-for="Pessoa.CNPJ" class="form-control" id="cnpj">
+        </div>
+    </div>
+    <div class="form-row"  id="bloco">
+        <h5 class="col-md-12">Endereço</h5>
+        <div class="form-group col-md-6">
+            <label for="cep">CEP</label>
+            <input type="text" asp-for="Pessoa.Endereco.CEP" class="form-control" id="cep" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="logradouro">Logradouro</label>
+            <input type="text" asp-for="Pessoa.Endereco.Logradouro" class="form-control" id="logradouro" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="pais">País</label>
+            <input type="text" asp-for="Pessoa.Endereco.Pais" class="form-control" id="pais" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="uf">UF</label>
+            <select asp-for="Pessoa.Endereco.IdUF" asp-items="Html.GetEnumSelectList<UF>()" class="form-control" required>
+                <option value="0">Selecione</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="cidade">Cidade</label>
+            <input type="text" asp-for="Pessoa.Endereco.Cidade" class="form-control" id="cidade" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="bairro">Bairro</label>
+            <input type="text" asp-for="Pessoa.Endereco.Bairro" class="form-control" id="bairro" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="complemento">Complemento</label>
+            <input type="text" asp-for="Pessoa.Endereco.Complemento" class="form-control" id="complemento" required>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
