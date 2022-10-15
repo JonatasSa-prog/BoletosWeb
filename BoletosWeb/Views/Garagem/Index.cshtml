@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BoletosWeb.Models.Garagem>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Garagens";
+}
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Adicionar">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código Garagem
+            </th>
+            <th>
+                Imovel
+            </th>
+            <th>
+                Morador
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codGaragem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imovel.codImovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imovel.Morador.Nome)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <a asp-action="Remover" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

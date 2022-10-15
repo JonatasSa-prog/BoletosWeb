@@ -11,11 +11,10 @@ namespace BoletosWeb.Models
     public class Imovel
     {
         public int Id { get; set; }
-        [Display(Name = "Código Imovel")]
-        public string codImovel { get; set; }
-        [Display(Name = "Proprietário")]
         public int Conta { get; set; }
-        [Display(Name = "Morador")]
+        [Display(Name = "Código Imovel")]
+        public string codImovel { get; set; }   
+        [Display(Name = "Proprietário")]
         public virtual Pessoa Proprietario { get; set; }
         [Display(Name = "Morador")]
         public virtual Pessoa Morador { get; set; }

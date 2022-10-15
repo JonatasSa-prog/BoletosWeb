@@ -10,6 +10,7 @@
         @TempData["MensageErro"];
     </div>
 }
+
 <style>
     div#bloco {
         border: 1px solid ;
@@ -34,6 +35,7 @@
         padding-left: 10px;
     }
 </style>
+
 <form asp-controller="Pessoa" asp-action="AdicionarPessoa" method="post">
     <div class="form-row" id="bloco">
         <h5>Dados Pessoais</h5>
@@ -51,7 +53,7 @@
         </div>
         <div class="form-group col-md-12 form-check">
             <label class="form-group form-check-label"></label>
-            <input asp-for="Pessoa.TipoPessoa" class="form-check-input" id="TipoPessoa" onclick="Mudarestado('divCNPJ')"> Pessoa Física?
+            <input asp-for="Pessoa.TipoPessoa" class="form-check-input" id="TipoPessoa" onclick="Mudarestado('divCNPJ')"> Pessoa Jurídica?
         </div>
         <div class="form-group col-md-12" id="divCPF">
             <label for="cpf">CPF</label>

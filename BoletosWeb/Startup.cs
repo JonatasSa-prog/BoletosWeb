@@ -41,6 +41,7 @@ namespace BoletosWeb
             services.AddScoped<PessoaService>();
             services.AddScoped<TelefoneService>();
             services.AddScoped<EnderecoService>();
+            services.AddScoped<GaragemService>();
             services.AddScoped<Session>();
 
             services.AddSession(o =>

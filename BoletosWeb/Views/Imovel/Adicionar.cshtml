@@ -1,7 +1,7 @@
 ﻿@model Imovel
 @{
     ViewData["Title"] = "Adicionar Imovel";
-    IEnumerable<Pessoa> pessoas = (IEnumerable<Pessoa>) ViewBag.DadosPessoa;
+    IEnumerable<Pessoa> pessoas = (IEnumerable<Pessoa>)ViewBag.DadosPessoa;
 }
 
 @if (TempData["MensageErro"] != null)
@@ -47,21 +47,36 @@
             <input type="number" asp-for="numGaragem" class="form-control" id="garegens" required>
         </div>
         <div class="form-group col-md-12">
-            <label for="dimensao">Dimensão</label>
-            <input type="number" asp-for="dimensao" class="form-control" id="dimensao" required>
-        </div>
-        <div class="form-group col-md-12">
             <label for="valor">Valor</label>
-            <input type="number" asp-for="valor" class="form-control" id="valor" required>
+            <input type="text" maxlength="9" onkeyup="formatarMoeda()" asp-for="valor" class="form-control" id="valor" required>
         </div>
         <div class="form-group col-md-12">
             <label for="valoreExtra">Valor Extra</label>
-            <input type="number" asp-for="vrExtra" class="form-control" id="valoreExtra" required>
+            <input type="text" maxlength="9" onkeyup="formatarMoeda()" asp-for="vrExtra" class="form-control" id="valoreExtra" required>
         </div>
         <div class="form-group col-md-12">
             <label for="valorDevido">Valor Devido</label>
-            <input type="number" asp-for="vrDevido" class="form-control" id="valorDevido" required>
+            <input type="text" maxlength="9" onkeyup="formatarMoeda()" asp-for="vrDevido" class="form-control" id="valorDevido" required>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>   
+    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
 </form>
+
+<script>
+    function formatarMoeda() {
+        var elemento = document.getElementById('valor');
+        var valor = elemento.value;
+
+        valor = valor + '';
+        valor = parseInt(valor.replace(/[\D]+/g, ''));
+        valor = valor + '';
+        valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+        if (valor.length > 6) {
+            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+        }
+
+        elemento.value = valor;
+        if(valor == 'NaN') elemento.value = '';
+    }
+</script>
