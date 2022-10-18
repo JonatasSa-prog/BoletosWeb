@@ -1,0 +1,63 @@
+﻿@model Pessoa
+@{
+    ViewData["Title"] = "Adicionar Pessoa";
+}
+
+@if (TempData["MensageErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensageErro"];
+    </div>
+}
+
+<form asp-controller="Pessoa" asp-action="RemoverPessoa" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="codImovel">Nome Completo</label>
+            <input type="text" asp-for="Nome" value="@Model.Nome" class="form-control" id="CodImovel" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="Telefone">Telefone 1</label>
+            <input type="tel" asp-for="Telefones" value="@Model.Telefones[0].GetTelefoneString()" class="form-control phone" id="Telefone" required disabled="">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="Email">Email</label>
+            <input type="text" asp-for="Email" value="@Model.Email" class="form-control" id="Email" required disabled="">
+        </div>
+        <div class="form-group col-md-12 form-check">
+            <label class="form-check-label">
+                <input asp-for="TipoPessoa" value="@Model.TipoPessoa" class="form-check-input" id="TipoPessoa" onclick="Mudarestado('divCNPJ')" disabled=""> Pessoa Física?
+            </label>
+        </div>
+        <div class="form-group col-md-12" id="divCPF">
+            <label for="cpf">CPF</label>
+            <input type="text" asp-for="CPF" value="@Model.CPF" class="form-control" id="cpf" disabled="">
+        </div>
+        <div class="form-group col-md-12" id="divCNPJ" style="display:none">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" asp-for="CNPJ" value="@Model.CNPJ" class="form-control" id="cnpj" disabled="">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Remover</button>
+    <button type="submit" asp-controller="Imovel" asp-action="Index" class="btn btn-secondary btn-block">Voltar</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+    function Mudarestado(el) {
+        var display = document.getElementById(el).style.display;
+        if (display == "none") {
+            document.getElementById(el).style.display = 'block';
+            document.getElementById('divCPF').style.display = 'none';
+        }
+        else {
+            document.getElementById(el).style.display = 'none';
+            document.getElementById('divCPF').style.display = 'block';
+        }
+
+    }
+
+</script>

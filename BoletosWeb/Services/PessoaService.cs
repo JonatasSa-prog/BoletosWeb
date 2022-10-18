@@ -51,5 +51,18 @@ namespace BoletosWeb.Services
                 throw new Exception($"Error ao atualizar o Pessoa. Detalhes do erro: {ex.Message}");
             }
         }
+
+        internal void RemoverPessoa(Pessoa pessoa)
+        {
+            try
+            {
+                _context.Pessoa.Remove(pessoa);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error ao remover o Pessoa. Detalhes do erro: {ex.Message}");
+            }
+        }
     }
 }

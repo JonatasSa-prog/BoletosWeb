@@ -113,5 +113,47 @@ namespace BoletosWeb.Controllers
                 return RedirectToAction("Adicionar");
             }
         }
+        public IActionResult Remover(int id)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    if (_session.BuscarSessao() != null)
+                    {
+                        var pessoa = _PessoaService.GetPessoaById(_session.BuscarSessao(), id);
+                        if (pessoa != null)
+                            return View(pessoa);
+                    }
+                    return RedirectToAction("Index", "Login");
+
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Não foi possivel acessar o sistema, tente novamente. Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult RemoverPessoa(Pessoa pessoa)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    _PessoaService.RemoverPessoa(pessoa);
+                    return RedirectToAction("Index", "Pessoa");
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Adicionar");
+            }
+        }
     }
 }

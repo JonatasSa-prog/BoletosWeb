@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BoletosWeb.Models.Pessoa>
 
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Pessoas";
 }
 
@@ -49,9 +50,8 @@
                 @item.TipoPessoaDocumentoToString()
             </td>
             <td>
-                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                <a asp-action="Remover" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 }
