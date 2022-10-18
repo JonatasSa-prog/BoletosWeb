@@ -72,5 +72,95 @@ namespace BoletosWeb.Controllers
                 return RedirectToAction("Adicionar");
             }
         }
+
+        public IActionResult Editar(int id)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    if (_session.BuscarSessao() != null)
+                    {
+                        ViewData.Add("DadosImoveis", _ImovelService.GetImoveis(_session.BuscarSessao()));
+                        var garagem = _GaragemService.GetgaragemById(_session.BuscarSessao(), id);
+                        if (garagem != null)
+                            return View(garagem);
+                    }
+                    return RedirectToAction("Index", "Login");
+
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Não foi possivel acessar o sistema, tente novamente. Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditarGaragem(Garagem garagem)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    garagem.Conta = _session.BuscarSessao().Id;
+                    garagem.Imovel = _ImovelService.GetImoveilById(_session.BuscarSessao(), garagem.IdImovel);
+                    _GaragemService.AtualizarGaragem(garagem);
+                    return RedirectToAction("Index", "Garagem");
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Adicionar");
+            }
+        }
+
+        public IActionResult Remover(int id)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    if (_session.BuscarSessao() != null)
+                    {
+                        ViewData.Add("DadosImoveis", _ImovelService.GetImoveis(_session.BuscarSessao()));
+                        var garagem = _GaragemService.GetgaragemById(_session.BuscarSessao(), id);
+                        if (garagem != null)
+                            return View(garagem);
+                    }
+                    return RedirectToAction("Index", "Login");
+
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Não foi possivel acessar o sistema, tente novamente. Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult RemoverGaragem(Garagem garagem)
+        {
+            try
+            {
+                if (_session.BuscarSessao() != null)
+                {
+                    _GaragemService.RemoverGaragem(garagem);
+                    return RedirectToAction("Index", "Garagem");
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensageErro"] = $"Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Adicionar");
+            }
+        }
     }
 }

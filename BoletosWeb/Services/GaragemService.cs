@@ -34,9 +34,34 @@ namespace BoletosWeb.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error ao adicionar a ararem. Detalhes do erro: {ex.Message}");
+                throw new Exception($"Error ao adicionar a Garagem. Detalhes do erro: {ex.Message}");
             }
 
+        }
+        public void AtualizarGaragem(Garagem garagem)
+        {
+            try
+            {
+                _context.Garagem.Update(garagem);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error ao atualizar o Garagem. Detalhes do erro: {ex.Message}");
+            }
+        }
+
+        public void RemoverGaragem(Garagem garagem)
+        {
+            try
+            {
+                _context.Garagem.Remove(garagem);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error ao remover o Garagem. Detalhes do erro: {ex.Message}");
+            };
         }
     }
 }
