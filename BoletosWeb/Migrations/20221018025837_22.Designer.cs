@@ -4,14 +4,16 @@ using BoletosWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoletosWeb.Migrations
 {
     [DbContext(typeof(BoletosWebContext))]
-    partial class BoletosWebContextModelSnapshot : ModelSnapshot
+    [Migration("20221018025837_22")]
+    partial class _22
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,12 +99,6 @@ namespace BoletosWeb.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataReferencia")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("IdConta")
                         .HasColumnType("int");
 
@@ -111,6 +107,9 @@ namespace BoletosWeb.Migrations
 
                     b.Property<int>("IdPessoaMorador")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("MesReferencia")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NumeroDocumento")
                         .HasColumnType("nvarchar(max)");
@@ -132,6 +131,9 @@ namespace BoletosWeb.Migrations
 
                     b.Property<double>("ValorPago")
                         .HasColumnType("float");
+
+                    b.Property<DateTime>("Vencimento")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

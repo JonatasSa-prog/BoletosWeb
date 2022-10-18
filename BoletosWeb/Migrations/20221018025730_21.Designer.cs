@@ -4,14 +4,16 @@ using BoletosWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoletosWeb.Migrations
 {
     [DbContext(typeof(BoletosWebContext))]
-    partial class BoletosWebContextModelSnapshot : ModelSnapshot
+    [Migration("20221018025730_21")]
+    partial class _21
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,57 +87,6 @@ namespace BoletosWeb.Migrations
                         .IsUnique();
 
                     b.ToTable("Endereco");
-                });
-
-            modelBuilder.Entity("BoletosWeb.Models.Financeiro", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataReferencia")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdConta")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdImovel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPessoaMorador")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NumeroDocumento")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Pago")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Tipo")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorDevido")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorExtra")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorPago")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Financeiro");
                 });
 
             modelBuilder.Entity("BoletosWeb.Models.Garagem", b =>

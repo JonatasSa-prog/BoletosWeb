@@ -15,7 +15,10 @@ namespace BoletosWeb.Models
         public string codGaragem { get; set; }
         [Display(Name = "Imovel")]
         public virtual Imovel Imovel { get; set; }
+        [Display(Name = "Ativo")]
+        public bool Ativo { get; set; }
         [NotMapped]
         public int IdImovel { get; set; }
+
     }
 }

@@ -20,5 +20,6 @@ namespace BoletosWeb.Data
         public virtual DbSet<Pessoa> Pessoa { get; set; }
         public virtual DbSet<Telefone> Telefone { get; set; }
         public virtual DbSet<Garagem> Garagem { get; set; }
+        public virtual DbSet<Financeiro> Financeiro { get; set; }
     }
 }
