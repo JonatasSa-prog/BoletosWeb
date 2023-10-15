@@ -30,6 +30,8 @@ namespace BoletosWeb.Controllers
                     if (!_ContaService.VerificarEmail(conta))
                     {
                         _ContaService.Adicionar(conta);
+                        TempData["CadastroFeito"] = $"Conta cadastrada!";
+                        return RedirectToAction("Index", "Login");
                     }
                     TempData["MensageErro"] = $"E-mail já cadastrado. Tente novamente!";
                 }

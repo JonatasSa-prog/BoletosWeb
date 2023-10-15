@@ -9,6 +9,11 @@ namespace BoletosWeb.Models
 {
     public class Pessoa
     {
+        public Pessoa()
+        {
+            Ativo = true;
+        }
+
         public int Id { get; set; }
         public int Conta { get; set; }
         [Display(Name = "Nome")]
