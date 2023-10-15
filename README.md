@@ -67,5 +67,3 @@ O projeto é organizado em conformidade com a arquitetura MVC (Model-View-Contro
 Sinta-se à vontade para contribuir com melhorias ou correções. Abra um "Pull Request" descrevendo suas alterações.
 
 ---
-
-Esse é apenas um exemplo de um README.md para o seu projeto em ASP.NET MVC. Certifique-se de ajustar e personalizar as seções de acordo com as necessidades e particularidades do seu projeto.
